@@ -12,8 +12,8 @@ var SportShop = React.createClass({
         for (var a = 0; a < this.props.balls.length; a++) {
             var ball = this.props.balls[a];
             var ballCode =
-                React.DOM.div({className: "card mb-3"},
-                    React.DOM.div({key: ball.code, className: "row no-gutters"},
+                React.DOM.div({className: "card mb-3", key: ball.code},
+                    React.DOM.div({className: "row no-gutters"},
                         React.DOM.div({className: "col-md-1"},
                             React.DOM.img({className: "card-img", src: ball.imageUrl}),
                         ),
