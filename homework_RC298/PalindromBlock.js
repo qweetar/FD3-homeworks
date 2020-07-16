@@ -44,11 +44,15 @@ var PalindromBlock = React.createClass({
         var tempArr  = [];
         this.props.palindroms.forEach((element) => {
             for(var i = 0; i < element.text.length; i++) {
-                for (var j = 0; j < textState.length; j++) {
-                    if(element.text[i] == textState[j]) {
-                        tempArr.push(element);
-                        i = element.text.length;
-                    }
+                // for (var j = 0; j < textState.length; j++) {
+                //     if(element.text[i] == textState[j]) {
+                //         tempArr.push(element);
+                //         i = element.text.length;
+                //     }
+                // }
+                if(element.text.includes(textState)) {
+                    tempArr.push(element);
+                    i = element.text.length;
                 }
             }
         })
