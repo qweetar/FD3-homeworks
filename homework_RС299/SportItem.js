@@ -1,18 +1,18 @@
 var SportItem = React.createClass({
 
+    itemClassStyle: function(code) {
+        console.log("itemClassStyle " + code);
+        if (this.props.code == code) {
+            return "table-success";
+        }
+    },
+
     choseItem: function() {
-        var rows = document.getElementsByTagName("tr");
-        for (var i = 0; i < rows.length; i++) {
-            if (rows[i].className.includes("table-success")) {
-                rows[i].className = "Balls";
-            };
-        };
-        var changeRow = document.getElementById(this.props.code);
-        changeRow.className = "Balls table-success";
+        this.props.cbSelectRow(this.props.code);
     },
 
     deleteItem: function() {
-        var delItem = document.getElementById(this.props.code);
+        var delItem = ReactDOM.findDOMNode(this);
         var confirmDel = confirm("Вы действительно хотите удалить?");
         if (confirmDel) {
             delItem.remove();
@@ -22,7 +22,7 @@ var SportItem = React.createClass({
 
     render: function() {
         
-        return React.DOM.tr({className: "Balls", id: this.props.code, key: this.props.code},
+        return React.DOM.tr({className: this.itemClassStyle(this.props.selectedRow), id: this.props.code, key: this.props.code, ref: this.props.code},
             React.DOM.th({scope: "row", onClick: this.choseItem}, this.props.code),
             React.DOM.td({onClick: this.choseItem},
                 React.DOM.div({className: "col-md-3"}, 
