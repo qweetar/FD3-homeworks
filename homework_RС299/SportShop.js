@@ -3,6 +3,7 @@ var SportShop = React.createClass({
     getInitialState: function() {
         return {
             selectedItem: null,
+            itemArray: this.props.balls,
         }
     },
 
@@ -17,9 +18,20 @@ var SportShop = React.createClass({
             this.setState({selectedItem: code});      
     },
 
+    removeItem: function(id) {
+        console.log("remove from arra item # " + id);
+        var tempArr = [];
+        this.state.itemArray.forEach((element) => {
+            if (id != element.code) {
+                tempArr.push(element);
+            }
+        });
+        this.setState({itemArray: tempArr});
+    },
+
     render: function() {
-        var ballsCode = this.props.balls.map(v => 
-            React.createElement(SportItem, {cbSelectRow: this.changeSelectedRow, selectedRow: this.state.selectedItem, key: v.code, code: v.code, imageUrl: v.imageUrl,  name: v.name, description: v.description, price: v.props, count: v.count})
+        var ballsCode = this.state.itemArray.map(v => 
+            React.createElement(SportItem, {cbremoveItem: this.removeItem,cbSelectRow: this.changeSelectedRow, selectedRow: this.state.selectedItem, key: v.code, code: v.code, imageUrl: v.imageUrl,  name: v.name, description: v.description, price: v.props, count: v.count})
             );
 
         return React.DOM.div({className: "SportShop"},

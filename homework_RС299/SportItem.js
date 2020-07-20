@@ -12,10 +12,9 @@ var SportItem = React.createClass({
     },
 
     deleteItem: function() {
-        var delItem = ReactDOM.findDOMNode(this);
         var confirmDel = confirm("Вы действительно хотите удалить?");
         if (confirmDel) {
-            delItem.remove();
+            this.props.cbremoveItem(this.props.code);
         }
     },
 
