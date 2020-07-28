@@ -110,11 +110,388 @@ var _SportShop2 = _interopRequireDefault(_SportShop);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ballArr = [{ name: "Мяч для американского футбола", code: 1, imageUrl: "images/football.png", count: 12, description: "NFL Junior Bulk Wilson WTF1857XB.", price: 20 }, { name: "Бейсбольный мяч", code: 2, imageUrl: "images/baseball.png", count: 100, description: "Wilson 'Championship'", price: 25 }, { name: "Баскетбольный мяч", code: 3, imageUrl: "images/basketball.png", count: 20, description: "Jogel JB-100", price: 33 }, { name: "Шар для боулинга", code: 4, imageUrl: "images/bowling.png", count: 5, description: "Patriot Blaze", price: 15 }, { name: "Бильярдные шары", code: 5, imageUrl: "images/snoocer.png", count: 155, description: "Aramith Super PRO Cup", price: 42 }, { name: "Футбольный мяч", code: 6, imageUrl: "images/soccer.png", count: 25, description: "Adidas Uniforia Club", price: 38 }, { name: "Мяч для тенниса", code: 7, imageUrl: "images/tennis.png", count: 88, description: "Head Penn Coach Red Label", price: 81 }, { name: "Волейбольный мяч", code: 8, imageUrl: "images/voleyball.png", count: 32, description: "Mikasa V200W", price: 47 }];
+var ballArr = __webpack_require__(/*! ./components/items.json */ "./components/items.json").items;
 
 var shopSection = "Мир мячей";
 
-ReactDOM.render(_react2.default.createElement(_SportShop2.default, { shopName: shopSection, balls: ballArr }), document.getElementById("container"));
+_reactDom2.default.render(_react2.default.createElement(_SportShop2.default, {
+    shopName: shopSection,
+    balls: ballArr
+}), document.getElementById("container"));
+
+/***/ }),
+
+/***/ "./components/EditItemCard.js":
+/*!************************************!*\
+  !*** ./components/EditItemCard.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditItemCard = function (_React$Component) {
+    _inherits(EditItemCard, _React$Component);
+
+    function EditItemCard() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, EditItemCard);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditItemCard.__proto__ || Object.getPrototypeOf(EditItemCard)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            isCardChanged: false,
+            nameField: _this.props.name,
+            descriptionField: _this.props.description,
+            imageUrlField: _this.props.imageUrl,
+            priceField: _this.props.price,
+            countField: _this.props.count,
+            codeField: _this.props.code,
+            nameFieldValMsg: null,
+            descriptionFieldValMsg: null,
+            imageUrlFieldValMsg: null,
+            priceFieldValMsg: null,
+            countFieldValMsg: null,
+            isFormValid: false
+        }, _this.nameFieldChange = function (event) {
+            if (event.target.value != "") {
+                // Value can't be null
+                _this.setState({ nameField: event.target.value });
+                _this.setState({ nameFieldValMsg: null });
+                _this.setState({ isFormValid: true });
+            } else {
+                _this.setState({ isFormValid: false });
+                _this.setState({ nameFieldValMsg: "Значение не может быть пустым" });
+            }
+            _this.setState({ isCardChanged: true });
+        }, _this.descriptionFieldChange = function (value) {
+            if (event.target.value != "") {
+                // Value can't be null
+                _this.setState({ descriptionField: event.target.value });
+                _this.setState({ descriptionFieldValMsg: null });
+                _this.setState({ isFormValid: true });
+            } else {
+                _this.setState({ isFormValid: false });
+                _this.setState({ descriptionFieldValMsg: "Значение не может быть пустым" });
+            }
+            _this.setState({ isCardChanged: true });
+        }, _this.imageUrlFieldChange = function (value) {
+            if (event.target.value != "") {
+                // Value can't be null
+                _this.setState({ imageUrlField: event.target.value });
+                _this.setState({ imageUrlFieldValMsg: null });
+                _this.setState({ isFormValid: true });
+            } else {
+                _this.setState({ isFormValid: false });
+                _this.setState({ imageUrlFieldValMsg: "Значение не может быть пустым" });
+            }
+            _this.setState({ isCardChanged: true });
+        }, _this.countFieldChange = function (value) {
+            if (event.target.value == "") {
+                // Value can't be null
+                _this.setState({ isFormValid: false });
+                _this.setState({ countFieldValMsg: "Значение не может быть пустым" });
+            } else if (!Number(event.target.value)) {
+                // Value can be only number
+                _this.setState({ isFormValid: false });
+                _this.setState({ countFieldValMsg: "Значение может быть только числовым" });
+            } else {
+                _this.setState({ countField: event.target.value });
+                _this.setState({ countFieldValMsg: null });
+                _this.setState({ isFormValid: true });
+            }
+            _this.setState({ isCardChanged: true });
+        }, _this.priceFieldChange = function (value) {
+            if (event.target.value == "") {
+                // Value can't be null
+                _this.setState({ isFormValid: false });
+                _this.setState({ priceFieldValMsg: "Значение не может быть пустым" });
+            } else if (!Number(event.target.value)) {
+                // Value can be only number
+                _this.setState({ isFormValid: false });
+                _this.setState({ priceFieldValMsg: "Значение может быть только числовым" });
+            } else {
+                _this.setState({ priceField: event.target.value });
+                _this.setState({ priceFieldValMsg: null });
+                _this.setState({ isFormValid: true });
+            }
+            _this.setState({ isCardChanged: true });
+        }, _this.saveChanges = function () {
+            _this.props.cbupdateItem(_this.props.code, _this.state.nameField, _this.state.descriptionField, _this.state.imageUrlField, _this.state.countField, _this.state.priceField);
+            _this.props.cbeditItem(null);
+        }, _this.cancelChages = function () {
+            console.log(_this.props.name);
+            _this.setState({ nameField: _this.props.name });
+            _this.setState({ descriptionField: _this.props.description });
+            _this.setState({ imageUrlField: _this.props.imageUrl });
+            _this.setState({ countField: _this.props.count });
+            _this.setState({ priceField: _this.props.price });
+            _this.setState({ isCardChanged: false });
+            _this.props.cbeditItem(null);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(EditItemCard, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label col-form-label-lg" },
+                        "№ " + this.props.code
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label" },
+                        "Наименование товара"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-6 mb-3" },
+                        _react2.default.createElement("input", { className: "form-control", defaultValue: this.state.nameField, onChange: this.nameFieldChange }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "badge badge-danger" },
+                            this.state.nameFieldValMsg
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label" },
+                        "Модель"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-6 mb-3" },
+                        _react2.default.createElement("input", { className: "form-control", defaultValue: this.state.descriptionField, onChange: this.descriptionFieldChange }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "badge badge-danger" },
+                            this.state.descriptionFieldValMsg
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label" },
+                        "Url картинки"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-6 mb-3" },
+                        _react2.default.createElement("input", { className: "form-control", defaultValue: this.state.imageUrlField, onChange: this.imageUrlFieldChange }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "badge badge-danger" },
+                            this.state.imageUrlFieldValMsg
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label" },
+                        "Колво на складе"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-6 mb-3" },
+                        _react2.default.createElement("input", { className: "form-control", defaultValue: this.state.countField, onChange: this.countFieldChange }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "badge badge-danger" },
+                            this.state.countFieldValMsg
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "form-group row" },
+                    _react2.default.createElement(
+                        "label",
+                        { className: "col-sm-2 col-form-label" },
+                        "Цена ($)"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-6 mb-3" },
+                        _react2.default.createElement("input", { className: "form-control", defaultValue: this.state.priceField, onChange: this.priceFieldChange }),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "badge badge-danger" },
+                            this.state.priceFieldValMsg
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { className: "btn btn-success", onClick: this.saveChanges, disabled: !this.state.isFormValid },
+                    "Обновить"
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { className: "btn btn-danger ml-3", onClick: this.cancelChages },
+                    "Отмена"
+                )
+            );
+        }
+    }]);
+
+    return EditItemCard;
+}(_react2.default.Component);
+
+EditItemCard.propTypes = {
+    name: _propTypes2.default.string.isRequired,
+    description: _propTypes2.default.string.isRequired,
+    imageUrl: _propTypes2.default.string.isRequired,
+    price: _propTypes2.default.string.isRequired,
+    code: _propTypes2.default.string.isRequired,
+    count: _propTypes2.default.string.isRequired
+    // editMode: PropTypes.string.isRequired,
+};
+exports.default = EditItemCard;
+
+/***/ }),
+
+/***/ "./components/ItemCard.js":
+/*!********************************!*\
+  !*** ./components/ItemCard.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ItemCard = function (_React$Component) {
+    _inherits(ItemCard, _React$Component);
+
+    function ItemCard() {
+        _classCallCheck(this, ItemCard);
+
+        return _possibleConstructorReturn(this, (ItemCard.__proto__ || Object.getPrototypeOf(ItemCard)).apply(this, arguments));
+    }
+
+    _createClass(ItemCard, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "card mb-3", style: { maxWidth: 440 + "px" } },
+                _react2.default.createElement(
+                    "div",
+                    { className: "row no-gutters" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-4" },
+                        _react2.default.createElement("img", { src: this.props.imageUrl, className: "card-img-top" })
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-md-8" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "card-body" },
+                            _react2.default.createElement(
+                                "h5",
+                                { className: "card-title" },
+                                this.props.name
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                { className: "card-text" },
+                                this.props.description
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                { className: "card-text" },
+                                "Цена товара: " + this.props.price + "$"
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ItemCard;
+}(_react2.default.Component);
+
+ItemCard.propTypes = {
+    imageUrl: _propTypes2.default.string.isRequired,
+    name: _propTypes2.default.string.isRequired,
+    description: _propTypes2.default.string.isRequired,
+    price: _propTypes2.default.string.isRequired
+};
+exports.default = ItemCard;
 
 /***/ }),
 
@@ -132,6 +509,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -142,33 +521,100 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SportItem = _react2.default.createClass({
-    displayName: "SportItem",
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    itemClassStyle: function itemClassStyle(code) {
-        console.log("itemClassStyle " + code);
-        if (this.props.code == code) {
-            return "table-success";
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SportItem = function (_React$Component) {
+    _inherits(SportItem, _React$Component);
+
+    function SportItem() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, SportItem);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
         }
-    },
 
-    choseItem: function choseItem() {
-        this.props.cbSelectRow(this.props.code);
-    },
-
-    deleteItem: function deleteItem() {
-        var confirmDel = confirm("Вы действительно хотите удалить?");
-        if (confirmDel) {
-            this.props.cbremoveItem(this.props.code);
-        }
-    },
-
-    render: function render() {
-
-        return _react2.default.DOM.tr({ className: this.itemClassStyle(this.props.selectedRow), id: this.props.code, key: this.props.code, ref: this.props.code }, _react2.default.DOM.th({ scope: "row", onClick: this.choseItem }, this.props.code), _react2.default.DOM.td({ onClick: this.choseItem }, _react2.default.DOM.div({ className: "col-md-3" }, _react2.default.DOM.img({ className: "img-thumbnail", src: this.props.imageUrl }))), _react2.default.DOM.td({ className: "card-title", onClick: this.choseItem }, this.props.name), _react2.default.DOM.td({ className: "card-text", onClick: this.choseItem }, this.props.description), _react2.default.DOM.td({ className: "card-text", onClick: this.choseItem }, this.props.price), _react2.default.DOM.td({ className: "card-text text-muted", onClick: this.choseItem }, this.props.count), _react2.default.DOM.td({}, _react2.default.DOM.button({ className: "btn-info btn", onClick: this.deleteItem }, "Delete")));
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SportItem.__proto__ || Object.getPrototypeOf(SportItem)).call.apply(_ref, [this].concat(args))), _this), _this.itemClassStyle = function (code) {
+            // console.log("itemClassStyle " + code);
+            if (_this.props.code == code) {
+                return "table-success";
+            }
+        }, _this.choseItem = function () {
+            if (_this.props.editMode != "add") {
+                _this.props.cbchangeSelectedRow(_this.props.code);
+            } else if (_this.props.editMode != null) {
+                _this.props.cbeditItem(null);
+            }
+        }, _this.deleteItem = function () {
+            var confirmDel = confirm("Вы действительно хотите удалить?");
+            if (confirmDel) {
+                _this.props.cbremoveItem(_this.props.code);
+            }
+        }, _this.editItem = function () {
+            _this.props.cbeditItem(_this.props.code);
+            _this.choseItem();
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
-});
+
+    _createClass(SportItem, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "tr",
+                { className: this.itemClassStyle(this.props.selectedRow), id: this.props.code, key: this.props.code },
+                _react2.default.createElement(
+                    "th",
+                    { scope: "row", onClick: this.choseItem },
+                    this.props.code
+                ),
+                _react2.default.createElement(
+                    "td",
+                    { className: "card-title", onClick: this.choseItem },
+                    this.props.name
+                ),
+                _react2.default.createElement(
+                    "td",
+                    { className: "card-text", onClick: this.choseItem },
+                    this.props.description
+                ),
+                _react2.default.createElement(
+                    "td",
+                    { className: "card-text", onClick: this.choseItem },
+                    this.props.price + "$"
+                ),
+                _react2.default.createElement(
+                    "td",
+                    { className: "card-text text-muted", onClick: this.choseItem },
+                    this.props.count
+                ),
+                _react2.default.createElement(
+                    "td",
+                    null,
+                    _react2.default.createElement(
+                        "button",
+                        { className: "btn btn-outline-danger ml-3 mb-1", onClick: this.deleteItem, disabled: this.props.editMode == "edit" },
+                        "Удалить"
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { className: "btn btn-outline-primary ml-3 mb-1", onClick: this.editItem },
+                        "Изменить"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return SportItem;
+}(_react2.default.Component);
 
 exports.default = SportItem;
 
@@ -188,6 +634,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -200,52 +648,268 @@ var _SportItem = __webpack_require__(/*! ./SportItem */ "./components/SportItem.
 
 var _SportItem2 = _interopRequireDefault(_SportItem);
 
+var _ItemCard = __webpack_require__(/*! ./ItemCard */ "./components/ItemCard.js");
+
+var _ItemCard2 = _interopRequireDefault(_ItemCard);
+
+var _EditItemCard = __webpack_require__(/*! ./EditItemCard */ "./components/EditItemCard.js");
+
+var _EditItemCard2 = _interopRequireDefault(_EditItemCard);
+
+var _AddItemCard = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '.AddItemCard'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _AddItemCard2 = _interopRequireDefault(_AddItemCard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SportShop = _react2.default.createClass({
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    getInitialState: function getInitialState() {
-        return {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SportShop = function (_React$Component) {
+    _inherits(SportShop, _React$Component);
+
+    function SportShop() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, SportShop);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SportShop.__proto__ || Object.getPrototypeOf(SportShop)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             selectedItem: null,
-            itemArray: this.props.balls
-        };
-    },
-
-    displayName: "SportShop",
-
-    getDefaultProps: function getDefaultProps() {
-        return { shopName: "Спортмастер" };
-    },
-
-    changeSelectedRow: function changeSelectedRow(code) {
-        console.log("changeSelectedRow " + code);
-        this.setState({ selectedItem: code });
-    },
-
-    removeItem: function removeItem(id) {
-        console.log("remove from arra item # " + id);
-        var tempArr = [];
-        this.state.itemArray.forEach(function (element) {
-            if (id != element.code) {
-                tempArr.push(element);
+            itemArray: _this.props.balls,
+            shopName: "Спортмастер",
+            selectedItemCard: null,
+            editedItemCard: null,
+            editMode: null
+        }, _this.changeSelectedRow = function (code) {
+            // console.log("changeSelectedRow " + code);
+            var chosenCard;
+            _this.state.itemArray.forEach(function (item, i, arr) {
+                if (item.code == code) {
+                    chosenCard = item;
+                }
+            });
+            _this.setState({ selectedItemCard: chosenCard });
+            _this.setState({ selectedItem: code });
+        }, _this.removeItem = function (id) {
+            // console.log("remove from arra item # " + id);
+            var tempArr = _this.state.itemArray.filter(function (item) {
+                return item.code != id;
+            });
+            _this.setState({ itemArray: tempArr });
+        }, _this.editItem = function (id) {
+            if (id != null) {
+                var chosenItem;
+                _this.state.itemArray.forEach(function (item, i, arr) {
+                    if (item.code == id) {
+                        chosenItem = item;
+                    }
+                });
+                _this.setState({ editedItemCard: chosenItem });
+                _this.setState({ editMode: "edit" });
+            } else {
+                _this.setState({ editedItemCard: null });
+                _this.setState({ editMode: null });
             }
-        });
-        this.setState({ itemArray: tempArr });
-    },
-
-    render: function render() {
-        var _this = this;
-
-        var ballsCode = this.state.itemArray.map(function (v) {
-            return _react2.default.createElement(_SportItem2.default, { cbremoveItem: _this.removeItem, cbSelectRow: _this.changeSelectedRow, selectedRow: _this.state.selectedItem, key: v.code, code: v.code, imageUrl: v.imageUrl, name: v.name, description: v.description, price: v.props, count: v.count });
-        });
-
-        return _react2.default.DOM.div({ className: "SportShop" }, _react2.default.DOM.p({ className: "h1" }, this.props.shopName), _react2.default.DOM.table({ className: "table table-hover" }, _react2.default.DOM.thead({ className: "thead-dark" }, _react2.default.DOM.tr({}, _react2.default.DOM.th({ scope: "col" }, "№"), _react2.default.DOM.th({ scope: "col" }, "Картинка"), _react2.default.DOM.th({ scope: "col" }, "Наименование товара"), _react2.default.DOM.th({ scope: "col" }, "Модель"), _react2.default.DOM.th({ scope: "col" }, "Цена"), _react2.default.DOM.th({ scope: "col" }, "Кол-во на складе"), _react2.default.DOM.th({ scope: "col" }, "Управление"))), _react2.default.DOM.tbody({}, ballsCode)));
+        }, _this.updateItem = function (id, name, description, imageUrl, count, price) {
+            var tempArr = _this.state.itemArray;
+            console.log("edit method");
+            tempArr.forEach(function (item, i, arr) {
+                if (item.code == id) {
+                    item.name = name;
+                    item.description = description;
+                    item.imageUrl = imageUrl;
+                    item.count = count;
+                    item.price = price;
+                }
+            });
+            console.log(newItem.code);
+            _this.setState({ itemArray: tempArr });
+        }, _this.addItem = function () {
+            var newId = 0;
+            _this.state.itemArray.forEach(function (item, i, arr) {
+                if (item.code > newId) {
+                    newId = item.code;
+                }
+                newId++;
+            });
+            console.log(newId);
+            var newObj = {};
+            newObj.code = newId;
+            _this.setState({ editedItemCard: newObj });
+            _this.setState({ editMode: "add" });
+            if (_this.state.editMode == "add") {
+                console.log("add method");
+                var newItem = {};
+                newItem.code = id;
+                newItem.name = name;
+                newItem.description = description;
+                newItem.imageUrl = imageUrl;
+                newItem.count = count;
+                newItem.price = price;
+                tempArr.push(newItem);
+            }
+            console.log(newItem.code);
+            _this.setState({ itemArray: tempArr });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-});
+    _createClass(SportShop, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
 
+            var ballsCode = this.state.itemArray.map(function (v) {
+                return _react2.default.createElement(_SportItem2.default, {
+                    cbeditItem: _this2.editItem,
+                    cbremoveItem: _this2.removeItem,
+                    cbchangeSelectedRow: _this2.changeSelectedRow,
+                    selectedRow: _this2.state.selectedItem,
+                    key: v.code,
+                    code: v.code,
+                    name: v.name,
+                    description: v.description,
+                    price: v.price,
+                    count: v.count,
+                    editMode: _this2.state.editMode
+                });
+            });
+
+            if (this.state.selectedItemCard != null) {
+                var selectedItemCardTag = _react2.default.createElement(_ItemCard2.default, {
+                    imageUrl: this.state.selectedItemCard.imageUrl,
+                    name: this.state.selectedItemCard.name,
+                    description: this.state.selectedItemCard.description,
+                    price: this.state.selectedItemCard.price
+                });
+            }
+
+            if (this.state.editedItemCard != null) {
+                var editedItemCardTag = _react2.default.createElement(_EditItemCard2.default, {
+                    cbupdateItem: this.updateItem,
+                    cbeditItem: this.editItem,
+                    name: this.state.editedItemCard.name,
+                    description: this.state.editedItemCard.description,
+                    imageUrl: this.state.editedItemCard.imageUrl,
+                    price: this.state.editedItemCard.price,
+                    code: this.state.editedItemCard.code,
+                    count: this.state.editedItemCard.count,
+                    editMode: this.state.editMode
+                });
+            }
+
+            if (this.state.editedItemCard != null) {
+                var addedItemCardTag = _react2.default.createElement(_AddItemCard2.default, {
+                    cbupdateItem: this.updateItem,
+                    cbeditItem: this.editItem,
+                    name: this.state.editedItemCard.name,
+                    description: this.state.editedItemCard.description,
+                    imageUrl: this.state.editedItemCard.imageUrl,
+                    price: this.state.editedItemCard.price,
+                    code: this.state.editedItemCard.code,
+                    count: this.state.editedItemCard.count,
+                    editMode: this.state.editMode
+                });
+            }
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "SportShop" },
+                    _react2.default.createElement(
+                        "p",
+                        { className: "h1" },
+                        this.props.shopName
+                    ),
+                    _react2.default.createElement(
+                        "table",
+                        { className: "table table-hover" },
+                        _react2.default.createElement(
+                            "thead",
+                            { className: "thead-dark" },
+                            _react2.default.createElement(
+                                "tr",
+                                null,
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "№"
+                                ),
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "Наименование товара"
+                                ),
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "Модель"
+                                ),
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "Цена"
+                                ),
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "Колво на складе"
+                                ),
+                                _react2.default.createElement(
+                                    "th",
+                                    { scope: "col" },
+                                    "Редактировать"
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "tbody",
+                            null,
+                            ballsCode
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "ml-3" },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "btn btn-success mb-3 ml-3", onClick: this.addItem, disabled: this.state.editMode != null },
+                        "Добавить новый мяч"
+                    ),
+                    this.state.selectedItemCard != null && this.state.editedItemCard == null && selectedItemCardTag,
+                    this.state.editedItemCard != null && editedItemCardTag
+                )
+            );
+        }
+    }]);
+
+    return SportShop;
+}(_react2.default.Component);
+
+SportShop.propTypes = {};
 exports.default = SportShop;
+
+/***/ }),
+
+/***/ "./components/items.json":
+/*!*******************************!*\
+  !*** ./components/items.json ***!
+  \*******************************/
+/*! exports provided: items, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"items\":[{\"name\":\"Мяч для американского футбола\",\"code\":\"1\",\"imageUrl\":\"images/football.png\",\"count\":\"12\",\"description\":\"NFL Junior Bulk Wilson WTF1857XB.\",\"price\":\"20\"},{\"name\":\"Бейсбольный мяч\",\"code\":\"2\",\"imageUrl\":\"images/baseball.png\",\"count\":\"100\",\"description\":\"Wilson 'Championship'\",\"price\":\"25\"},{\"name\":\"Баскетбольный мяч\",\"code\":\"3\",\"imageUrl\":\"images/basketball.png\",\"count\":\"20\",\"description\":\"Jogel JB-100\",\"price\":\"33\"},{\"name\":\"Шар для боулинга\",\"code\":\"4\",\"imageUrl\":\"images/bowling.png\",\"count\":\"5\",\"description\":\"Patriot Blaze\",\"price\":\"15\"},{\"name\":\"Бильярдные шары\",\"code\":\"5\",\"imageUrl\":\"images/snoocer.png\",\"count\":\"155\",\"description\":\"Aramith Super PRO Cup\",\"price\":\"42\"},{\"name\":\"Футбольный мяч\",\"code\":\"6\",\"imageUrl\":\"images/soccer.png\",\"count\":\"25\",\"description\":\"Adidas Uniforia Club\",\"price\":\"38\"},{\"name\":\"Мяч для тенниса\",\"code\":\"7\",\"imageUrl\":\"images/tennis.png\",\"count\":\"88\",\"description\":\"Head Penn Coach Red Label\",\"price\":\"81\"},{\"name\":\"Волейбольный мяч\",\"code\":\"8\",\"imageUrl\":\"images/voleyball.png\",\"count\":\"32\",\"description\":\"Mikasa V200W\",\"price\":\"47\"}]}");
 
 /***/ }),
 

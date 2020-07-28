@@ -6,7 +6,7 @@ class ItemCard extends React.Component {
         imageUrl: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
     };
 
     render() {
