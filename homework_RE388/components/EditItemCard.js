@@ -25,15 +25,32 @@ class EditItemCard extends React.Component {
         imageUrlFieldValMsg: null,
         priceFieldValMsg: null,
         countFieldValMsg: null,
-        isFormValid: false,
+        isNameFormValid: true,
+        isDescriptionFormValid: true,
+        isImageUrlFormValid: true,
+        isCountFormValid: true,
+        isPriceFormValid: true,
+    }
+
+    isFormValid = () => {
+        if (this.state.isNameFormValid &&
+            this.state.isDescriptionFormValid &&
+            this.state.isImageUrlFormValid &&
+            this.state.isCountFormValid &&
+            this.state.isPriceFormValid &&
+            this.state.isCardChanged) {
+                return true;
+            } else {
+                return false;
+            }
     }
 
     nameFieldChange = () => {
         if (event.target.value != "") { // Value can't be null
             this.setState({nameFieldValMsg: null})
-            this.setState({isFormValid: true});
+            this.setState({isNameFormValid: true});
         } else {
-            this.setState({isFormValid: false});
+            this.setState({isNameFormValid: false});
             this.setState({nameFieldValMsg: "Значение не может быть пустым"});
         }
         this.setState({nameField: event.target.value});
@@ -44,9 +61,9 @@ class EditItemCard extends React.Component {
     descriptionFieldChange = () => {
         if (event.target.value != "") { // Value can't be null
             this.setState({descriptionFieldValMsg: null})
-            this.setState({isFormValid: true});
+            this.setState({isDescriptionFormValid: true});
         } else {
-            this.setState({isFormValid: false});
+            this.setState({isDescriptionFormValid: false});
             this.setState({descriptionFieldValMsg: "Значение не может быть пустым"});
         }
         this.setState({descriptionField: event.target.value});
@@ -57,9 +74,9 @@ class EditItemCard extends React.Component {
     imageUrlFieldChange = () => {
         if (event.target.value != "") { // Value can't be null
             this.setState({imageUrlFieldValMsg: null})
-            this.setState({isFormValid: true});
+            this.setState({isImageUrlFormValid: true});
         } else {
-            this.setState({isFormValid: false});
+            this.setState({isImageUrlFormValid: false});
             this.setState({imageUrlFieldValMsg: "Значение не может быть пустым"});
         }
         this.setState({imageUrlField: event.target.value});
@@ -69,14 +86,14 @@ class EditItemCard extends React.Component {
 
     countFieldChange = () => {
         if (event.target.value == "") { // Value can't be null
-            this.setState({isFormValid: false});
+            this.setState({isCountFormValid: false});
             this.setState({countFieldValMsg: "Значение не может быть пустым"});
         } else if (!Number(event.target.value)) { // Value can be only number
-            this.setState({isFormValid: false});
+            this.setState({isCountFormValid: false});
             this.setState({countFieldValMsg: "Значение может быть только числовым"});
         } else {
             this.setState({countFieldValMsg: null})
-            this.setState({isFormValid: true});
+            this.setState({isCountFormValid: true});
         }
         this.setState({countField: event.target.value});
         this.setState({isCardChanged: true});
@@ -85,14 +102,14 @@ class EditItemCard extends React.Component {
 
     priceFieldChange = () => {
         if (event.target.value == "") { // Value can't be null
-            this.setState({isFormValid: false});
+            this.setState({isPriceFormValid: false});
             this.setState({priceFieldValMsg: "Значение не может быть пустым"});
         } else if (!Number(event.target.value)) { // Value can be only number
-            this.setState({isFormValid: false});
+            this.setState({isPriceFormValid: false});
             this.setState({priceFieldValMsg: "Значение может быть только числовым"});
         } else {
             this.setState({priceFieldValMsg: null});
-            this.setState({isFormValid: true});
+            this.setState({isPriceFormValid: true});
         }
         this.setState({priceField: event.target.value});
         this.setState({isCardChanged: true});
@@ -162,7 +179,7 @@ class EditItemCard extends React.Component {
                             <span className="badge badge-danger">{this.state.priceFieldValMsg}</span>
                         </div>
                     </div>
-                    <button className="btn btn-success" onClick={this.saveChanges} disabled={!this.state.isFormValid}>{"Обновить"}</button>
+                    <button className="btn btn-success" onClick={this.saveChanges} disabled={!this.isFormValid()}>{"Обновить"}</button>
                     <button className="btn btn-danger ml-3" onClick={this.cancelChages} >{"Отмена"}</button>
                 </div> 
             );
