@@ -3,8 +3,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import RainbowBlock from "./components/RainbowBlock";
 import ButtonsText from "./components/ButtonsText";
+
+import {withRainbowFrame} from './components/withRainbowFrame';
 
 var colors = ["red", "orange", "yellow", "green", "#00BFFF", "blue", "purple"];
 
@@ -21,6 +22,8 @@ function showHideText (text) {
     alert(text);
 }
 
+let ButtonsTextWithRainbowFrame = withRainbowFrame(colors)(ButtonsText);
+
 ReactDOM.render(
     <div className="ml-3 mt-3">
         <ButtonsText 
@@ -30,8 +33,7 @@ ReactDOM.render(
             cbshowHideText = {showHideText}
         />
         <br/>
-        <RainbowBlock
-            colors = {colors}
+        <ButtonsTextWithRainbowFrame 
             buttonOne = {buttonOneInner}
             buttonTwo = {buttonTwoInner}
             text = {textInner}
