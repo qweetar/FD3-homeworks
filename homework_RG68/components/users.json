@@ -1,0 +1,7 @@
+{"users": [
+    {"id": "1", "name": "Иван", "surname": "Иванович", "familyname": "Иванов", "balance": "200", "status": "active"},
+    {"id": "2", "name": "Сидор", "surname": "Сидорович", "familyname": "Сидоров", "balance": "250", "status": "active"},
+    {"id": "3", "name": "Петр", "surname": "Петрович", "familyname": "Петров", "balance": "180", "status": "active"},
+    {"id": "4", "name": "Григорий", "surname": "Григорьевич", "familyname": "Гроигорьев", "balance": "-220", "status": "blocked"}
+]
+}
