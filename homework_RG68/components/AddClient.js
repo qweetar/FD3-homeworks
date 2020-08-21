@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import {mobileEvents} from './events';
 
-class AddClient extends React.Component {
+class AddClient extends React.PureComponent {
 
     static propTypes = {
     }
@@ -32,10 +32,6 @@ class AddClient extends React.Component {
     setNewBalanceRef = (ref) => {
         this.newBalanceRef = ref;
     }
-
-    // changeNameInput() {
-    //     this.nameInput.current.onChange();
-    // }
 
     saveChanges = (EO) => {
         if (this.newFamilynameRef.value != "" &&

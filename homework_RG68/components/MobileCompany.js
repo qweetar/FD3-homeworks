@@ -25,8 +25,8 @@ class MobileCompany extends React.PureComponent {
       state = {
         companyName: this.props.companyName,
         clients: this.props.clients,
+        filteredClients: this.props.clients,
         editClientCard: null,
-        addClient: null,
         editMode: null,
         filterMode: null,
       };
@@ -104,21 +104,23 @@ class MobileCompany extends React.PureComponent {
         }
       }
 
-      updateClient = (id, familyname, name, surname, balance) => {
+      updateClient = (user) => {
         var tempArr = this.state.clients;
         tempArr.forEach(function(client, i, arr) {
-          if (client.id == id) {
-            client.name = name;
-            client.surname = surname;
-            client.familyname = familyname;
-            client.balance = balance;
-            if (balance > 0) {
+          if (client.id == user.id) {
+            alert("wow" + user);
+            client.familyname = user.familyname;
+            client.balance = user.balance;
+            if (user.balance > 0) {
               client.status = "active";
             } else {
               client.status = "blocked";
             }
+            console.log(client);
           }
         });
+        console.log(tempArr);
+        console.log(this.state.clients);
         this.setState({clients: tempArr});
         this.setState({editMode: null});
       }
@@ -129,44 +131,26 @@ class MobileCompany extends React.PureComponent {
       }
 
       filterAllClients = () => {
-        this.setState({filterMode: null});
+        this.setState({filteredClients: this.state.clients});
       }
 
       filterActiveClients = () => {
-        this.setState({filterMode: "active"});
+        var tempArr = this.state.clients.filter(client => client.status == "active");
+        this.setState({filteredClients: tempArr});
       }
 
       filterBlockedClients = () => {
-        this.setState({filterMode: "blocked"});
+        var tempArr = this.state.clients.filter(client => client.status == "blocked");
+        this.setState({filteredClients: tempArr});
       }
 
-      clientList = () => {
-        var tempClientList;
-        if (this.state.filterMode == "active") {
-          return tempClientList = this.state.clients.filter(client => client.status == "active");
-        } else if (this.state.filterMode == "blocked") {
-          return tempClientList = this.state.clients.filter(client => client.status == "blocked");
-        } else {
-          return tempClientList = this.state.clients;
-        }
-      }
-
-
-      
       render() {
     
         console.log("MobileCompany render");
-
-        var clientsForRender = this.clientList();
-        var clientsCode = clientsForRender.map(client => 
+        var clientsCode = this.state.filteredClients.map(client => 
           <MobileClient 
-            familyname = {client.familyname}
-            name = {client.name}
-            surname = {client.surname}
-            status = {client.status}
-            id = {Number(client.id)}
+            user = {client}
             key = {Number(client.id)}
-            balance = {Number(client.balance)}
           />
         );
 
@@ -179,11 +163,7 @@ class MobileCompany extends React.PureComponent {
         if (this.state.editMode == "edit") {
           var editClientCardTag = 
             <EditClient 
-              id = {Number(this.state.editClientCard.id)}
-              familyname = {this.state.editClientCard.familyname}
-              name = {this.state.editClientCard.name}
-              surname = {this.state.editClientCard.surname}
-              balance = {Number(this.state.editClientCard.balance)}
+              user = {this.state.editClientCard}
             />
           ;
         }

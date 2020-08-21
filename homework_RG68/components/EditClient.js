@@ -3,43 +3,20 @@ import PropTypes from "prop-types";
 
 import {mobileEvents} from './events';
 
-class EditClient extends React.Component {
+class EditClient extends React.PureComponent {
     
     static propTypes = {
-        id: PropTypes.number.isRequired,
-        familyname: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        surname: PropTypes.string.isRequired,
-        balance: PropTypes.number.isRequired,
+        user: PropTypes.object.isRequired,
     }
 
     state = {
-        id: null,
-        key: null,
-        familyname: null,
-        name: null,
-        surname: null,
-        balance: null,
-        status: null,
         isFormValid: null,
-        familynameFieldMsg: null,
-        isFamilynameFormValid: null,
-        isCardChanged: false,
     }
 
-    newNameRef = null;
-    newSurnameRef = null;
     newFamilynameRef = null;
     newBalanceRef = null;
 
-    setNewNameRef = (ref) => {
-        this.newNameRef = ref;
-    }
-
-    setNewSurnameRef = (ref) => {
-        this.newSurnameRef = ref;
-    }
-
+    
     setNewFamilynameRef = (ref) => {
         this.newFamilynameRef = ref;
     }
@@ -48,17 +25,12 @@ class EditClient extends React.Component {
         this.newBalanceRef = ref;
     }
 
-    isFormValid() {
-
-    }
-
     saveChanges = (EO) => {
         if (this.newFamilynameRef.value != "" &&
-            this.newNameRef.value != "" &&
-            this.newSurnameRef.value != "" &&
             this.newBalanceRef.value != "") {
             this.setState({isFormValid: true});
-            mobileEvents.emit("ENewUpdateClient", this.props.id, this.newFamilynameRef.value, this.newNameRef.value, this.newSurnameRef.value, this.newBalanceRef.value);
+            var newUser = {...this.props.user, familyname: this.newFamilynameRef.value, balance: this.newBalanceRef.value}
+            mobileEvents.emit("ENewUpdateClient", newUser);
         } else {
             this.setState({isFormValid: false});
         }
@@ -69,34 +41,22 @@ class EditClient extends React.Component {
     }
 
     render() {
+            var addAlert = <div className="alert alert-danger mr-10" role="alert">{"Для сохраниния пользователя необходимо заполнить все поля"}</div>
             return(
                 <div className="ml-3">
+                {this.state.isFormValid == false && addAlert}
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" >{"Фамилия"}</label>
                         <div className="col-md-6 mb-3">
-                            <input className="form-control" defaultValue={this.props.familyname} ref={this.setNewFamilynameRef}/>
-                            <span className="badge badge-danger">{this.state.familynameFieldMsg}</span>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" >{"Имя"}</label>
-                        <div className="col-md-6 mb-3">
-                            <input className="form-control" defaultValue={this.state.isCardChanged ? this.state.name : this.props.name} ref={this.setNewNameRef}></input>
-                            <span className="badge badge-danger">{this.state.descriptionFieldValMsg}</span>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" >{"Отчество"}</label>
-                        <div className="col-md-6 mb-3">
-                            <input className="form-control" defaultValue={this.state.isCardChanged ? this.state.surname : this.props.surname} ref={this.setNewSurnameRef}></input>
-                            <span className="badge badge-danger">{this.state.imageUrlFieldValMsg}</span>
+                            <input className="form-control" defaultValue={this.props.user.familyname} ref={this.setNewFamilynameRef}/>
+                            {/* <span className="badge badge-danger">{this.state.familynameFieldMsg}</span> */}
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" >{"Баланс BYN"}</label>
                         <div className="col-md-6 mb-3">
-                            <input className="form-control" defaultValue={this.state.isCardChanged ? this.state.balance : this.props.balance} ref={this.setNewBalanceRef}/>
-                            <span className="badge badge-danger">{this.state.countFieldValMsg}</span>
+                            <input className="form-control" defaultValue={this.props.user.balance} ref={this.setNewBalanceRef}/>
+                            {/* <span className="badge badge-danger">{this.state.countFieldValMsg}</span> */}
                         </div>
                     </div>
                     <button className="btn btn-success" onClick={this.saveChanges} >{"Обновить"}</button>
