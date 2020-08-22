@@ -25,7 +25,6 @@ class MobileCompany extends React.PureComponent {
       state = {
         companyName: this.props.companyName,
         clients: this.props.clients,
-        filteredClients: this.props.clients,
         editClientCard: null,
         editMode: null,
         filterMode: null,
@@ -108,20 +107,18 @@ class MobileCompany extends React.PureComponent {
         var tempArr = this.state.clients;
         tempArr.forEach(function(client, i, arr) {
           if (client.id == user.id) {
-            alert("wow" + user);
-            client.familyname = user.familyname;
-            client.balance = user.balance;
+            client = {...client, familyname: user.familyname};
+            client = {...client, balance: user.balance};
             if (user.balance > 0) {
-              client.status = "active";
+              client = {...client, status: "active"};
             } else {
-              client.status = "blocked";
+              client = {...client, status: "blocked"};
             }
-            console.log(client);
+            tempArr[i] = client;
           }
         });
-        console.log(tempArr);
-        console.log(this.state.clients);
         this.setState({clients: tempArr});
+        
         this.setState({editMode: null});
       }
       
@@ -131,28 +128,36 @@ class MobileCompany extends React.PureComponent {
       }
 
       filterAllClients = () => {
-        this.setState({filteredClients: this.state.clients});
+        this.setState({filterMode: null});
+        
       }
 
       filterActiveClients = () => {
-        var tempArr = this.state.clients.filter(client => client.status == "active");
-        this.setState({filteredClients: tempArr});
+        this.setState({filterMode: "active"});
       }
 
       filterBlockedClients = () => {
-        var tempArr = this.state.clients.filter(client => client.status == "blocked");
-        this.setState({filteredClients: tempArr});
+        this.setState({filterMode: "blocked"});
       }
 
       render() {
     
         console.log("MobileCompany render");
-        var clientsCode = this.state.filteredClients.map(client => 
+
+        var clientsCode = this.state.clients;
+
+        if (this.state.filterMode != null) {
+          clientsCode = clientsCode.filter(client => client.status == this.state.filterMode);
+        }
+        
+        clientsCode = clientsCode.map(client => 
           <MobileClient 
             user = {client}
             key = {Number(client.id)}
           />
         );
+
+        
 
         if (this.state.editMode == "add") {
           var addClientCardTag = 
