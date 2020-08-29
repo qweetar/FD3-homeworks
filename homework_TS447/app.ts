@@ -1,38 +1,26 @@
 class Scales {
-    items:Array<Product>;
+    items:Array<IScaleable>;
 
-    constructor(_items:Array<Product>) {
+    constructor(_items:Array<IScaleable>) {
         this.items = _items;
     }
 
-    add(item:Product):void {
+    add(item:IScaleable):void {
         this.items.push(item);
     }
 
     getSumScale():void {
         let sum = 0;
         for (var i = 0; i < this.items.length; i++) {
-            sum += this.items[i].scale;
+            sum += this.items[i].getScale();
         }
         console.log("Общий вес: " + sum + " кг");
     }
 
     getNameList():void {
-        let itemNames = this.items.map(item => item.name);
+        let itemNames = this.items.map(item => item.getName());
         console.log("Список товаров на весах: " + itemNames);
     }
-}
-
-class Product {
-
-    name:string;
-    scale:number;
-
-    constructor(_name:string, _scale:number) {
-        this.name = _name;
-        this.scale = _scale;
-    }
-
 }
 
 interface IScaleable {
@@ -43,13 +31,16 @@ interface IScaleable {
 
 }
 
-class Apple extends Product implements IScaleable {
+class Apple implements IScaleable {
 
+    name:string;
+    scale:number;
     color:string;
     taste:string;
 
     constructor(_name:string, _scale:number, _color:string, _taste:string) {
-        super(_name, _scale);
+        this.name = _name;
+        this.scale = _scale;
         this.color = _color;
         this.taste = _taste;
     }
@@ -62,13 +53,16 @@ class Apple extends Product implements IScaleable {
     }
 }
 
-class Tomato extends Product implements IScaleable {
+class Tomato implements IScaleable {
 
+    name:string;
+    scale:number;
     color:string;
     taste:string;
 
     constructor(_name:string, _scale:number, _color:string, _taste:string) {
-        super(_name, _scale);
+        this.name = _name;
+        this.scale = _scale;
         this.color = _color;
         this.taste = _taste;
     }
@@ -81,12 +75,12 @@ class Tomato extends Product implements IScaleable {
     }
 }
 
-let apple1:Product = new Apple("Белый налив", 5, "желтый", "сладкий");
-let apple2:Product = new Apple("Антоновка", 10, "желтый", "кислый");
-let apple3:Product = new Apple("Малиновка", 3, "красный", "кисло-сладкий");
+let apple1:IScaleable = new Apple("Белый налив", 5, "желтый", "сладкий");
+let apple2:IScaleable = new Apple("Антоновка", 10, "желтый", "кислый");
+let apple3:IScaleable = new Apple("Малиновка", 3, "красный", "кисло-сладкий");
 
-let tomato1:Product = new Tomato("Черный принц", 5, "коричневый", "сладкий");
-let tomato2:Product = new Tomato("Сливка", 3, "желтый", "сладкий");
+let tomato1:IScaleable = new Tomato("Черный принц", 5, "коричневый", "сладкий");
+let tomato2:IScaleable = new Tomato("Сливка", 3, "желтый", "сладкий");
 
 let productArr = [];
 productArr.push(apple1);
@@ -99,10 +93,17 @@ let newScale:Scales = new Scales(productArr);
 
 newScale.getNameList();
 newScale.getSumScale();
+
+console.log("________________________________");
+
 newScale.add(apple1);
 newScale.getNameList();
 newScale.getSumScale();
 
+console.log("________________________________");
+
+console.log("Сорт яблок: " + productArr[2].getName() + ", вес в кг: " + productArr[2].getScale());
+console.log("Сорт помидор: " + productArr[4].getName() + ", вес в кг: " + productArr[4].getScale());
 
 
 
