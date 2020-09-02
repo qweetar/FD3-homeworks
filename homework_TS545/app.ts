@@ -23,9 +23,9 @@ class Product {
 
 interface IStorageEngine {
 
-    addItem(item:Object):void;
+    addItem(item:Product):void;
 
-    getItem(index:number):Object;
+    getItem(index:number):Product;
 
     getCount():number;
 }
@@ -43,12 +43,10 @@ class ScalesStorageEngineArray implements IStorageEngine {
     };
 
     getItem(index:number):Product {
-        console.log(this.itemArray);
         return this.itemArray[index];
     };
 
     getCount():number {
-        console.log(this.itemArray);
         return this.itemArray.length;
     };
 }
@@ -56,7 +54,6 @@ class ScalesStorageEngineArray implements IStorageEngine {
 class ScalesStorageEngineLocalStorage implements IStorageEngine {
 
     ls = window.localStorage;
-    lsObj:string;
     key:string;
     itemArray:Array<Product>;
 
@@ -67,23 +64,23 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
 
     addItem(item:Product):void {
         this.itemArray.push(item);
-        this.lsObj = JSON.stringify(this.itemArray);
-        // console.log(this.itemArray);
-        this.ls.setItem(this.key, this.lsObj);
+        let lsObj = JSON.stringify(this.itemArray);
+        this.ls.setItem(this.key, lsObj);
     };
 
     getItem(index:number):Product {
-        this.lsObj = this.ls.getItem(this.key);
-        this.itemArray = JSON.parse(this.lsObj);
-        console.log(this.itemArray);
-        return this.itemArray[index];
+        let lsObj = this.ls.getItem(this.key);
+        let itemArray = [];
+        itemArray = JSON.parse(lsObj);
+        var newProduct = new Product(itemArray[index].name, itemArray[index].scale, itemArray[index].color, itemArray[index].taste);
+        return newProduct;
     };
 
     getCount():number {
-        this.lsObj = this.ls.getItem(this.key);
-        this.itemArray = JSON.parse(this.lsObj);
-        console.log(this.itemArray);
-        return this.itemArray.length;
+        let lsObj = this.ls.getItem(this.key);
+        let itemArray = [];
+        itemArray = JSON.parse(lsObj);
+        return itemArray.length;
     };
 }
 
@@ -99,24 +96,22 @@ class Scales<StorageEngine extends IStorageEngine> {
         this.storage.addItem(item);
     }
 
-    getSumScale():void {
+    getSumScale():number {
         let sum = 0;
         for (var i = 0; i < this.storage.getCount(); i++) {
-            let tempProd:Product = <Product>this.storage.getItem(i);
-            // console.log(tempProd);
-            sum += tempProd.getScale();
+            let tempProd:number = this.storage.getItem(i).getScale();
+            sum += tempProd;
         }
-        console.log("Общий вес: " + sum + " кг");
+        return sum;
     }
 
-    getNameList():void {
+    getNameList():Array<string> {
         let itemNames = [];
         for (let i = 0; i < this.storage.getCount(); i++) {
-            let tempProd:Product = <Product>this.storage.getItem(i);
-            // console.log(tempProd);
-            itemNames.push(tempProd.getName());
+            let tempProd:string = this.storage.getItem(i).getName();
+            itemNames.push(tempProd);
         }
-        console.log("Список товаров на весах: " + itemNames);
+        return itemNames;
     }
 }
 
@@ -137,8 +132,8 @@ newScale.add(product3);
 newScale.add(product4);
 newScale.add(product5);
 
-newScale.getNameList();
-newScale.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
 
 console.log("________________________________");
 
@@ -151,6 +146,6 @@ newScale2.add(product3);
 newScale2.add(product4);
 newScale2.add(product5);
 
-newScale2.getNameList();
-newScale2.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
 

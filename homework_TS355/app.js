@@ -23,11 +23,11 @@ var Scales = /** @class */ (function () {
         for (var i = 0; i < this.items.length; i++) {
             sum += this.items[i].scale;
         }
-        console.log("Общий вес: " + sum + " кг");
+        return sum;
     };
     Scales.prototype.getNameList = function () {
         var itemNames = this.items.map(function (item) { return item.name; });
-        console.log("Список товаров на весах: " + itemNames);
+        return itemNames;
     };
     return Scales;
 }());
@@ -76,9 +76,9 @@ productArr.push(apple3);
 productArr.push(tomato1);
 productArr.push(tomato2);
 var newScale = new Scales(productArr);
-newScale.getNameList();
-newScale.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
 newScale.add(apple1);
-newScale.getNameList();
-newScale.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
 //# sourceMappingURL=app.js.map

@@ -9,17 +9,17 @@ class Scales {
         this.items.push(item);
     }
 
-    getSumScale():void {
+    getSumScale():number {
         let sum = 0;
         for (var i = 0; i < this.items.length; i++) {
             sum += this.items[i].getScale();
         }
-        console.log("Общий вес: " + sum + " кг");
+        return sum;
     }
 
-    getNameList():void {
+    getNameList():Array<string> {
         let itemNames = this.items.map(item => item.getName());
-        console.log("Список товаров на весах: " + itemNames);
+        return itemNames;
     }
 }
 
@@ -91,14 +91,15 @@ productArr.push(tomato2);
 
 let newScale:Scales = new Scales(productArr);
 
-newScale.getNameList();
-newScale.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
+
 
 console.log("________________________________");
 
 newScale.add(apple1);
-newScale.getNameList();
-newScale.getSumScale();
+console.log("Список товаров на весах: " + newScale.getNameList());
+console.log("Общий вес: " + newScale.getSumScale() + " кг");
 
 console.log("________________________________");
 
