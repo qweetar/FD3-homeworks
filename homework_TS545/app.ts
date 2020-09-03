@@ -123,8 +123,8 @@ let product3:Product = new Product("Малиновка", 3, "красный", "�
 let product4:Product = new Product("Черный принц", 5, "коричневый", "сладкий");
 let product5:Product = new Product("Сливка", 3, "желтый", "сладкий");
 
-let newStorageArray = new ScalesStorageEngineArray;
-let newScale = new Scales<IStorageEngine>(newStorageArray);
+let newStorageArray:ScalesStorageEngineArray = new ScalesStorageEngineArray;
+let newScale:Scales<IStorageEngine> = new Scales<IStorageEngine>(newStorageArray);
 
 newScale.add(product1);
 newScale.add(product2);
@@ -137,8 +137,8 @@ console.log("Общий вес: " + newScale.getSumScale() + " кг");
 
 console.log("________________________________");
 
-let newStorageLocalStorage = new ScalesStorageEngineLocalStorage;
-let newScale2 = new Scales<IStorageEngine>(newStorageLocalStorage);
+let newStorageLocalStorage:ScalesStorageEngineLocalStorage = new ScalesStorageEngineLocalStorage;
+let newScale2:Scales<IStorageEngine> = new Scales<IStorageEngine>(newStorageLocalStorage);
 
 newScale2.add(product1);
 newScale2.add(product2);

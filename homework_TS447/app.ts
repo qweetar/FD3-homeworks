@@ -82,7 +82,7 @@ let apple3:Apple = new Apple("Малиновка", 3, "красный", "кис�
 let tomato1:Tomato = new Tomato("Черный принц", 5, "коричневый", "сладкий");
 let tomato2:Tomato = new Tomato("Сливка", 3, "желтый", "сладкий");
 
-let productArr = [];
+let productArr:Array<IScaleable> = [];
 productArr.push(apple1);
 productArr.push(apple2);
 productArr.push(apple3);
