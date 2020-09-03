@@ -10,15 +10,15 @@ class Scales {
     }
 
     getSumScale():number {
-        let sum = 0;
-        for (var i = 0; i < this.items.length; i++) {
+        let sum:number = 0;
+        for (var i:number = 0; i < this.items.length; i++) {
             sum += this.items[i].scale;
         }
         return sum;
     }
 
     getNameList():Array<string> {
-        let itemNames = this.items.map(item => item.name);
+        let itemNames:Array<string> = this.items.map(item => item.name);
         return itemNames;
     }
 }

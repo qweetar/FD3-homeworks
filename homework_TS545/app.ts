@@ -53,7 +53,7 @@ class ScalesStorageEngineArray implements IStorageEngine {
 
 class ScalesStorageEngineLocalStorage implements IStorageEngine {
 
-    ls = window.localStorage;
+    ls:any = window.localStorage;
     key:string;
     itemArray:Array<Product>;
 
@@ -64,21 +64,21 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
 
     addItem(item:Product):void {
         this.itemArray.push(item);
-        let lsObj = JSON.stringify(this.itemArray);
+        let lsObj:string = JSON.stringify(this.itemArray);
         this.ls.setItem(this.key, lsObj);
     };
 
     getItem(index:number):Product {
-        let lsObj = this.ls.getItem(this.key);
-        let itemArray = [];
+        let lsObj:string = this.ls.getItem(this.key);
+        let itemArray:Array<any> = [];
         itemArray = JSON.parse(lsObj);
-        var newProduct = new Product(itemArray[index].name, itemArray[index].scale, itemArray[index].color, itemArray[index].taste);
+        var newProduct:Product = new Product(itemArray[index].name, itemArray[index].scale, itemArray[index].color, itemArray[index].taste);
         return newProduct;
     };
 
     getCount():number {
-        let lsObj = this.ls.getItem(this.key);
-        let itemArray = [];
+        let lsObj:string = this.ls.getItem(this.key);
+        let itemArray:Array<any> = [];
         itemArray = JSON.parse(lsObj);
         return itemArray.length;
     };
@@ -97,8 +97,8 @@ class Scales<StorageEngine extends IStorageEngine> {
     }
 
     getSumScale():number {
-        let sum = 0;
-        for (var i = 0; i < this.storage.getCount(); i++) {
+        let sum:number = 0;
+        for (let i:number = 0; i < this.storage.getCount(); i++) {
             let tempProd:number = this.storage.getItem(i).getScale();
             sum += tempProd;
         }
@@ -106,8 +106,8 @@ class Scales<StorageEngine extends IStorageEngine> {
     }
 
     getNameList():Array<string> {
-        let itemNames = [];
-        for (let i = 0; i < this.storage.getCount(); i++) {
+        let itemNames:Array<string> = [];
+        for (let i:number = 0; i < this.storage.getCount(); i++) {
             let tempProd:string = this.storage.getItem(i).getName();
             itemNames.push(tempProd);
         }

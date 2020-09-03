@@ -10,15 +10,15 @@ class Scales {
     }
 
     getSumScale():number {
-        let sum = 0;
-        for (var i = 0; i < this.items.length; i++) {
+        let sum:number = 0;
+        for (var i:number = 0; i < this.items.length; i++) {
             sum += this.items[i].getScale();
         }
         return sum;
     }
 
     getNameList():Array<string> {
-        let itemNames = this.items.map(item => item.getName());
+        let itemNames:Array<string> = this.items.map(item => item.getName());
         return itemNames;
     }
 }
@@ -75,12 +75,12 @@ class Tomato implements IScaleable {
     }
 }
 
-let apple1:IScaleable = new Apple("Белый налив", 5, "желтый", "сладкий");
-let apple2:IScaleable = new Apple("Антоновка", 10, "желтый", "кислый");
-let apple3:IScaleable = new Apple("Малиновка", 3, "красный", "кисло-сладкий");
+let apple1:Apple = new Apple("Белый налив", 5, "желтый", "сладкий");
+let apple2:Apple = new Apple("Антоновка", 10, "желтый", "кислый");
+let apple3:Apple = new Apple("Малиновка", 3, "красный", "кисло-сладкий");
 
-let tomato1:IScaleable = new Tomato("Черный принц", 5, "коричневый", "сладкий");
-let tomato2:IScaleable = new Tomato("Сливка", 3, "желтый", "сладкий");
+let tomato1:Tomato = new Tomato("Черный принц", 5, "коричневый", "сладкий");
+let tomato2:Tomato = new Tomato("Сливка", 3, "желтый", "сладкий");
 
 let productArr = [];
 productArr.push(apple1);
